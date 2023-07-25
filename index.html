@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pl-PL">
+  <head>
+    <meta charset="utf-8" />
+    <title>TurboWieszcz++</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <span id="title"></span>
+    <span id="strophe"></span>
+    <div>
+      <br /><br />
+      Ilość zwrotek:
+        <select id="how_much">
+          <option value="1">1</option>
+          <option value="2" selected>2</option>
+          <option value="4">4</option>
+          <option value="8">8</option>
+        </select>
+        ?
+    </span>
+    <script type="module">
+      import init, { go, title } from "./pkg/hello_wasm.js";
+      init().then(() => {
+        var s = document.getElementById("strophe")
+        var text = document.createTextNode(`${go(2)}`);
+        s.appendChild(text);
+        var s = document.getElementById("title");
+        var text_title = document.createTextNode(`${title()}`);
+        s.appendChild(text_title);
+        var s = document.getElementById("how_much");
+        s.onchange = function() {
+          var e = document.getElementById("how_much");
+          var how_much = e.options[e.selectedIndex].value;
+          var s = document.getElementById("strophe");
+          s.innerHTML = "";
+          var text = document.createTextNode(`${go(how_much)}`);
+          s.appendChild(text);
+        };
+      });
+    </script>
+  </body>
+</html>
