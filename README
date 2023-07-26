@@ -1,1 +1,11 @@
-Just a simple TurboWieszcz file, but made in WASM
+Just a simple TurboWieszcz file, but made in WASM.
+
+1. Install rust:
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+2. Install wasm on rust:
+cargo install wasm-pack
+3. Go to the turbowieszcz directory, and do:
+wasm-pack build --target web
+4. You got it! Now you can run it with any web server, for example:
+python3 -m http.server
+5. Go to http://localhost:8000/ and open the index.html file in your browser.
